@@ -1,0 +1,10 @@
+*.tif
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+*.xml
+*.cpg
+*.zip
+.ipynb_checkpoints/
