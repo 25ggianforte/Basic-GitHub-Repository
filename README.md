@@ -1,21 +1,22 @@
-# Project Theme Interests
+# Quantifying Sea Level Rise Displacement and Safe Relocation Zones in Miami-Dade County
 
-## General Theme
-Using environmental data to look at long term changes in places I am familiar with.
+## Project Overview
+Miami-Dade County faces severe, immediate threats from climate change and sea level rise (SLR). Because the region is built on porous limestone and low-lying swampland, even minor increases in sea level threaten massive population centers and critical infrastructure. 
 
-## Interest Statement
-I am interested in working with real environmental datasets to see how conditions have changed over time at a local scale. Looking at a single city feels manageable and easier to understand than trying to analyze something global right away.
+This spatial analysis project asks two critical questions:
+1. How many residents will be permanently displaced by a 1-foot sea level rise?
+2. Where is the optimal (safe and flat) high ground remaining in the county to relocate these displaced populations?
 
-## Possible Direction
-One idea I am considering is using historical temperature data for Cedar Rapids, Iowa to explore whether average temperatures appear to change over time. This is just a starting point and not a final project decision.
+## Methodology & Tools
+This project utilizes Python-based spatial data science to model environmental impact and human displacement. The analysis was conducted on the UIowa Argon High-Performance Computing (HPC) cluster.
 
-## Tools and Skills I Want to Work With
-- Real world environmental and climate datasets  
-- Simple data analysis and plotting  
-- Geospatial or cloud based tools like Google Earth Engine  
-- Version control and reproducible workflows using Git and GitHub  
+* **Raster Analysis (Terrain Modeling):** Using the `rasterio` library, USGS 1/3 arc-second Digital Elevation Models (DEMs) were mosaicked and clipped to the county boundary. Map algebra was used to filter for elevations strictly above 3 meters (~10 feet) and calculate slope gradients to isolate buildable, flat terrain (The Atlantic Coastal Ridge).
+* **Vector Analysis (Demographic Impact):** Using `geopandas`, NOAA 1-foot SLR inundation polygons were intersected with 2020 US Census Tract boundaries. Area-weighted interpolation was executed to accurately estimate the proportion of the population impacted within partially flooded neighborhoods.
 
-## Status
-This is a preliminary description of my interests rather than a finalized project topic. The exact focus will likely change once I explore the data and tools in more detail.
+## Preliminary Results & Data
+Initial spatial calculations have successfully identified both the safe buildable zones and the projected human toll:
 
+* **Displacement:** The area-weighted vector intersection indicates that a 1-foot sea level rise will permanently displace approximately **135,090 individuals** in Miami-Dade County.
+* **Relocation:** Raster map algebra successfully isolated a narrow strip of high-elevation, low-slope ground along the eastern coastal ridge, mathematically proving the limited availability of safe relocation zones. 
 
+The underlying code (`CODE.ipynb`) and data workflows generating these results have been pushed to this repository.
